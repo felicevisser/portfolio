@@ -1,13 +1,882 @@
-index
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Felice Visser — O&amp;O</title>
 
-01001000010101010101001
-for in create index file
+  <!-- Google Fonts: Space Grotesk (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
 
-bin-c
-bin;
+  <style>
+    /* ====================================================
+       DESIGN TOKENS — kleuren, fonts, schaduwen
+       ==================================================== */
+    :root {
+      --indigo:        #5C5FDE;
+      --indigo-lt:     #EEEFFE;
+      --coral:         #FF6347;
+      --bg:            #F7F7FD;
+      --surface:       #FFFFFF;
+      --text:          #1A1A2E;
+      --muted:         #6E7191;
+      --border:        #E4E3F0;
+      --radius-sm:     8px;
+      --radius-md:     14px;
+      --radius-lg:     20px;
+      --shadow:        0 4px 24px rgba(92, 95, 222, 0.09);
+      --shadow-hover:  0 12px 40px rgba(92, 95, 222, 0.17);
+      --font-display:  'Space Grotesk', sans-serif;
+      --font-body:     'Inter', sans-serif;
+    }
 
-0100101001010101010010100101010101001010010101010100101001010101010010100101010101001010010101010100101001010101010010100101010101001010010101010100101001010101010010100101010101001010010101010100101001010101010010100101010101001010010101010100101001010101010010100101010101001010010101010100101001010101010010100101010101001010010101010100101001010101
-01001010010101010100101001010101
-01001010010101010100101001010101
+    /* ====================================================
+       RESET & BASE
+       ==================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html                   { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background:  var(--bg);
+      color:       var(--text);
+      line-height: 1.6;
+      min-height:  100vh;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a   { color: inherit; text-decoration: none; }
 
-0100101001010101010010100101010101001010010101010100101001010101
+    /* ====================================================
+       HEADER
+       ==================================================== */
+    .site-header {
+      position:           sticky;
+      top:                0;
+      z-index:            100;
+      background:         rgba(247, 247, 253, 0.88);
+      backdrop-filter:    blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom:      1.5px solid var(--border);
+    }
+    .header-inner {
+      max-width:      1100px;
+      margin:         0 auto;
+      padding:        0 28px;
+      height:         64px;
+      display:        flex;
+      align-items:    center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family:    var(--font-display);
+      font-weight:    700;
+      font-size:      1.05rem;
+      color:          var(--indigo);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--text); }
+
+    .header-right {
+      display:     flex;
+      align-items: center;
+      gap:         28px;
+    }
+    .nav-link {
+      font-size:   0.88rem;
+      font-weight: 500;
+      color:       var(--muted);
+      transition:  color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+
+    /* Taalknop */
+    .lang-switch {
+      display:       flex;
+      align-items:   center;
+      background:    var(--surface);
+      border:        1.5px solid var(--border);
+      border-radius: 999px;
+      padding:       3px;
+      gap:           2px;
+    }
+    .lang-btn {
+      border:         none;
+      background:     none;
+      cursor:         pointer;
+      font-family:    var(--font-display);
+      font-weight:    600;
+      font-size:      0.72rem;
+      padding:        4px 12px;
+      border-radius:  999px;
+      color:          var(--muted);
+      letter-spacing: 0.05em;
+      transition:     background 0.2s, color 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--indigo);
+      color:      #fff;
+    }
+
+    /* ====================================================
+       HERO
+       ==================================================== */
+    .hero {
+      max-width: 1100px;
+      margin:    0 auto;
+      padding:   76px 28px 60px;
+    }
+    .hero-eyebrow {
+      display:         inline-flex;
+      align-items:     center;
+      gap:             10px;
+      font-family:     var(--font-display);
+      font-size:       0.75rem;
+      font-weight:     700;
+      letter-spacing:  0.14em;
+      text-transform:  uppercase;
+      color:           var(--indigo);
+      margin-bottom:   22px;
+    }
+    .hero-eyebrow::before {
+      content:       '';
+      display:       block;
+      width:         28px;
+      height:        2px;
+      background:    var(--coral);
+      border-radius: 2px;
+    }
+    .hero-name {
+      font-family:    var(--font-display);
+      font-size:      clamp(2.8rem, 7vw, 5.4rem);
+      font-weight:    700;
+      line-height:    1.06;
+      letter-spacing: -0.03em;
+      margin-bottom:  22px;
+    }
+    .hero-name .accent {
+      background:              linear-gradient(130deg, var(--indigo) 0%, #9B5DE5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip:         text;
+    }
+    .hero-sub {
+      font-size:     1.05rem;
+      color:         var(--muted);
+      max-width:     540px;
+      margin-bottom: 36px;
+      line-height:   1.75;
+    }
+    .hero-badges {
+      display:   flex;
+      flex-wrap: wrap;
+      gap:       10px;
+    }
+    .badge {
+      font-family:    var(--font-display);
+      font-size:      0.78rem;
+      font-weight:    600;
+      padding:        6px 16px;
+      border-radius:  999px;
+      border:         1.5px solid var(--border);
+      background:     var(--surface);
+      color:          var(--muted);
+      letter-spacing: 0.01em;
+    }
+    .badge.filled {
+      background:    var(--indigo-lt);
+      border-color:  transparent;
+      color:         var(--indigo);
+    }
+
+    /* ====================================================
+       OVER-MIJ STRIP
+       ==================================================== */
+    .about {
+      max-width: 1100px;
+      margin:    0 auto 56px;
+      padding:   0 28px;
+    }
+    .about-card {
+      background:   var(--surface);
+      border:       1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding:      32px 36px;
+      display:      grid;
+      grid-template-columns: 1fr auto;
+      gap:          40px;
+      align-items:  center;
+    }
+    .about-label {
+      font-family:    var(--font-display);
+      font-size:      0.7rem;
+      font-weight:    700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color:          var(--coral);
+      margin-bottom:  10px;
+    }
+    .about-text {
+      font-size:   1rem;
+      color:       var(--muted);
+      max-width:   520px;
+      line-height: 1.75;
+    }
+    .about-avatar {
+      width:          88px;
+      height:         88px;
+      border-radius:  50%;
+      background:     var(--indigo-lt);
+      border:         3px solid var(--indigo);
+      display:        flex;
+      align-items:    center;
+      justify-content: center;
+      font-family:    var(--font-display);
+      font-size:      1.9rem;
+      font-weight:    700;
+      color:          var(--indigo);
+      flex-shrink:    0;
+      user-select:    none;
+    }
+
+    /* ====================================================
+       PROJECTEN-SECTIE
+       ==================================================== */
+    .projects {
+      max-width: 1100px;
+      margin:    0 auto;
+      padding:   0 28px 90px;
+    }
+    .section-header {
+      display:         flex;
+      align-items:     baseline;
+      justify-content: space-between;
+      margin-bottom:   32px;
+      padding-bottom:  16px;
+      border-bottom:   1.5px solid var(--border);
+    }
+    .section-title {
+      font-family:    var(--font-display);
+      font-size:      1.45rem;
+      font-weight:    700;
+      letter-spacing: -0.02em;
+    }
+    .section-count {
+      font-size: 0.82rem;
+      color:     var(--muted);
+    }
+
+    /* Kaartgrid */
+    .cards-grid {
+      display:               grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:                   24px;
+    }
+
+    /* ====================================================
+       KAART (CARD)
+       ==================================================== */
+    .card {
+      background:     var(--surface);
+      border-radius:  var(--radius-lg);
+      border:         1.5px solid var(--border);
+      overflow:       hidden;
+      display:        flex;
+      flex-direction: column;
+      box-shadow:     var(--shadow);
+      transition:     transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      transform:  translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Fotovak */
+    .card-photo {
+      position:     relative;
+      width:        100%;
+      aspect-ratio: 16 / 10;
+      overflow:     hidden;
+      background:   var(--indigo-lt);
+    }
+    .card-photo img {
+      width:      100%;
+      height:     100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .card:hover .card-photo img { transform: scale(1.04); }
+
+    /* Placeholder (zichtbaar als er géén foto is) */
+    .card-photo-placeholder {
+      position:        absolute;
+      inset:           0;
+      display:         flex;
+      flex-direction:  column;
+      align-items:     center;
+      justify-content: center;
+      gap:             10px;
+      color:           var(--indigo);
+      opacity:         0.45;
+      pointer-events:  none;
+    }
+    .card-photo-placeholder svg  { width: 38px; height: 38px; }
+    .card-photo-placeholder span {
+      font-family:    var(--font-display);
+      font-size:      0.72rem;
+      font-weight:    600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    /* Verberg placeholder zodra er een img aanwezig is */
+    .card-photo img ~ .card-photo-placeholder { display: none; }
+
+    /* Kaartinhoud */
+    .card-body {
+      padding:        20px 22px 22px;
+      display:        flex;
+      flex-direction: column;
+      flex:           1;
+    }
+    .card-meta {
+      display:         flex;
+      align-items:     center;
+      justify-content: space-between;
+      margin-bottom:   10px;
+    }
+    .card-tag {
+      font-family:    var(--font-display);
+      font-size:      0.68rem;
+      font-weight:    700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color:          var(--indigo);
+      background:     var(--indigo-lt);
+      padding:        3px 10px;
+      border-radius:  999px;
+    }
+    .card-num {
+      font-family: var(--font-display);
+      font-size:   0.73rem;
+      color:       var(--muted);
+      font-weight: 500;
+    }
+    .card-title {
+      font-family:    var(--font-display);
+      font-size:      1.08rem;
+      font-weight:    700;
+      letter-spacing: -0.01em;
+      margin-bottom:  8px;
+      color:          var(--text);
+    }
+    .card-desc {
+      font-size:     0.87rem;
+      color:         var(--muted);
+      line-height:   1.68;
+      flex:          1;
+      margin-bottom: 18px;
+    }
+    .card-footer {
+      display:         flex;
+      align-items:     center;
+      justify-content: space-between;
+      padding-top:     14px;
+      border-top:      1px solid var(--border);
+    }
+    .card-date {
+      font-size: 0.76rem;
+      color:     var(--muted);
+    }
+    .card-link {
+      display:     flex;
+      align-items: center;
+      gap:         5px;
+      font-family: var(--font-display);
+      font-size:   0.78rem;
+      font-weight: 600;
+      color:       var(--indigo);
+      transition:  gap 0.2s;
+    }
+    .card-link:hover   { gap: 9px; }
+    .card-link svg     { width: 13px; height: 13px; }
+
+    /* ====================================================
+       FOOTER
+       ==================================================== */
+    .site-footer {
+      border-top: 1.5px solid var(--border);
+      padding:    26px 28px;
+    }
+    .footer-inner {
+      max-width:       1100px;
+      margin:          0 auto;
+      display:         flex;
+      align-items:     center;
+      justify-content: space-between;
+      flex-wrap:       wrap;
+      gap:             10px;
+    }
+    .footer-text {
+      font-size: 0.8rem;
+      color:     var(--muted);
+    }
+    .footer-mark {
+      font-family: var(--font-display);
+      font-size:   0.8rem;
+      font-weight: 600;
+      color:       var(--indigo);
+    }
+
+    /* ====================================================
+       TAALWISSEL FADE
+       ==================================================== */
+    body.lang-fade [data-i18n],
+    body.lang-fade [data-nl],
+    body.lang-fade [data-en] {
+      opacity:    0;
+      transition: opacity 0.12s ease;
+    }
+
+    /* ====================================================
+       RESPONSIVE
+       ==================================================== */
+    @media (max-width: 900px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .cards-grid         { grid-template-columns: 1fr; }
+      .about-card         { grid-template-columns: 1fr; }
+      .about-avatar       { display: none; }
+      .nav-link           { display: none; }
+      .hero               { padding-top: 52px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .card, .card-photo img, .card-link { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <div class="logo">Felice<span> Visser</span></div>
+
+    <nav class="header-right" aria-label="Navigatie">
+      <a href="#projecten" class="nav-link" data-i18n="nav.projects">Projecten</a>
+      <a href="#over"      class="nav-link" data-i18n="nav.about">Over mij</a>
+
+      <!-- Taalschakelaar / Language switch -->
+      <div class="lang-switch" role="group" aria-label="Taal kiezen">
+        <button class="lang-btn active" id="btn-nl" onclick="setLang('nl')">NL</button>
+        <button class="lang-btn"        id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+
+  <div class="hero-eyebrow" data-i18n="hero.eyebrow">Portfolio · O&amp;O · Brugklas</div>
+
+  <h1 class="hero-name">
+    <span data-i18n="hero.greeting">Hoi, ik ben</span><br>
+    <span class="accent">Felice Visser</span>
+  </h1>
+
+  <p class="hero-sub" data-i18n="hero.sub">
+    Dit is mijn portfolio voor Onderzoek &amp; Ontwerpen.
+    Hier bewaar ik al mijn projecten, onderzoeken en ontwerpen uit de brugklas.
+  </p>
+
+  <div class="hero-badges">
+    <span class="badge filled" data-i18n="badge.oo">Onderzoek &amp; Ontwerpen</span>
+    <span class="badge"        data-i18n="badge.year">Schooljaar 2025–2026</span>
+    <span class="badge"        data-i18n="badge.class">Brugklas</span>
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     OVER MIJ
+     ============================================================ -->
+<section class="about" id="over">
+  <div class="about-card">
+    <div>
+      <div class="about-label" data-i18n="about.label">Over mij</div>
+      <p class="about-text" data-i18n="about.text">
+        Ik ben Felice en ik zit in de brugklas. Bij O&amp;O leer ik onderzoek doen en
+        dingen ontwerpen. Op deze pagina staan al mijn projecten.
+      </p>
+    </div>
+    <div class="about-avatar" aria-hidden="true">FV</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PROJECTEN
+     ============================================================ -->
+<section class="projects" id="projecten">
+
+  <div class="section-header">
+    <h2 class="section-title" data-i18n="projects.title">Projecten</h2>
+    <span class="section-count" id="card-count"></span>
+  </div>
+
+  <!--
+  ================================================================
+  KAARTGRID — HOE VOEG JE EEN NIEUWE KAART TOE?
+  ================================================================
+
+  1. Kopieer het blok tussen "NIEUWE KAART — KOPIEER HIERONDER"
+     en "EINDE KOPIEBLOK" (helemaal onderaan dit grid).
+  2. Plak het vóór de sluitende </div> van .cards-grid.
+  3. Pas deze 5 dingen aan:
+       • card-num    → volgend nummer (004, 005 ...)
+       • card-tag    → data-nl="TAG" data-en="TAG"
+       • card-title  → data-nl="NL-titel" data-en="EN title"
+       • card-desc   → data-nl="NL-tekst" data-en="EN text"
+       • card-date   → bijv. "Mrt 2026"
+  4. Foto toevoegen:
+       • Zet je foto in een map "fotos/" naast index.htm
+       • Verwijder het <!-- ... --> rondom de <img>-tag
+       • Pas src="fotos/JOUW_FOTO.jpg" aan
+  ================================================================
+  -->
+
+  <div class="cards-grid">
+
+
+    <!-- ═══════════════════ KAART 001 ═══════════════════ -->
+    <article class="card">
+      <div class="card-photo">
+
+        <!-- ▼ Foto: verwijder de opmerkingstekens (<!-- en -->) om de foto in te schakelen -->
+        <!-- <img src="fotos/project1.jpg" alt="Project 1 foto"> -->
+
+        <div class="card-photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8
+                     a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span data-i18n="card.addphoto">Foto toevoegen</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag" data-nl="Onderzoek" data-en="Research"></span>
+          <span class="card-num">001</span>
+        </div>
+        <h3 class="card-title"
+            data-nl="Projectnaam 1"
+            data-en="Project Name 1"></h3>
+        <p class="card-desc"
+           data-nl="Schrijf hier een korte beschrijving van je project. Wat heb je onderzocht of ontworpen? Wat heb je geleerd?"
+           data-en="Write a short description of your project here. What did you research or design? What did you learn?"></p>
+        <div class="card-footer">
+          <span class="card-date">Okt 2025</span>
+          <a href="#" class="card-link">
+            <span data-i18n="card.more">Meer lezen</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    <!-- ════════════════ EINDE KAART 001 ════════════════ -->
+
+
+    <!-- ═══════════════════ KAART 002 ═══════════════════ -->
+    <article class="card">
+      <div class="card-photo">
+
+        <!-- <img src="fotos/project2.jpg" alt="Project 2 foto"> -->
+
+        <div class="card-photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8
+                     a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span data-i18n="card.addphoto">Foto toevoegen</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag" data-nl="Ontwerpen" data-en="Design"></span>
+          <span class="card-num">002</span>
+        </div>
+        <h3 class="card-title"
+            data-nl="Projectnaam 2"
+            data-en="Project Name 2"></h3>
+        <p class="card-desc"
+           data-nl="Schrijf hier een korte beschrijving van je project. Wat heb je onderzocht of ontworpen? Wat heb je geleerd?"
+           data-en="Write a short description of your project here. What did you research or design? What did you learn?"></p>
+        <div class="card-footer">
+          <span class="card-date">Nov 2025</span>
+          <a href="#" class="card-link">
+            <span data-i18n="card.more">Meer lezen</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    <!-- ════════════════ EINDE KAART 002 ════════════════ -->
+
+
+    <!-- ═══════════════════ KAART 003 ═══════════════════ -->
+    <article class="card">
+      <div class="card-photo">
+
+        <!-- <img src="fotos/project3.jpg" alt="Project 3 foto"> -->
+
+        <div class="card-photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8
+                     a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span data-i18n="card.addphoto">Foto toevoegen</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag" data-nl="Technologie" data-en="Technology"></span>
+          <span class="card-num">003</span>
+        </div>
+        <h3 class="card-title"
+            data-nl="Projectnaam 3"
+            data-en="Project Name 3"></h3>
+        <p class="card-desc"
+           data-nl="Schrijf hier een korte beschrijving van je project. Wat heb je onderzocht of ontworpen? Wat heb je geleerd?"
+           data-en="Write a short description of your project here. What did you research or design? What did you learn?"></p>
+        <div class="card-footer">
+          <span class="card-date">Jan 2026</span>
+          <a href="#" class="card-link">
+            <span data-i18n="card.more">Meer lezen</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+    <!-- ════════════════ EINDE KAART 003 ════════════════ -->
+
+
+    <!--
+    ================================================================
+    NIEUWE KAART — KOPIEER HIERONDER (van <article> t/m </article>)
+    ================================================================
+
+    <article class="card">
+      <div class="card-photo">
+
+        <img src="fotos/JOUW_FOTO.jpg" alt="Beschrijving van de foto">
+
+        <div class="card-photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8
+                     a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span data-i18n="card.addphoto">Foto toevoegen</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag" data-nl="TAG NL" data-en="TAG EN"></span>
+          <span class="card-num">004</span>
+        </div>
+        <h3 class="card-title"
+            data-nl="Titel in het Nederlands"
+            data-en="Title in English"></h3>
+        <p class="card-desc"
+           data-nl="Jouw beschrijving in het Nederlands."
+           data-en="Your description in English."></p>
+        <div class="card-footer">
+          <span class="card-date">Mrt 2026</span>
+          <a href="#" class="card-link">
+            <span data-i18n="card.more">Meer lezen</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    ================================================================
+    EINDE KOPIEBLOK
+    ================================================================
+    -->
+
+  </div><!-- einde .cards-grid -->
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-text" data-i18n="footer.text">Portfolio Felice Visser · O&amp;O Brugklas</p>
+    <p class="footer-mark">Felice Visser</p>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     JAVASCRIPT — Taalwisseling & kaartenteller
+     ============================================================ -->
+<script>
+
+  /* ============================================================
+     VERTALINGEN
+     Voeg hier een nieuwe sleutel toe als je een nieuw UI-element
+     wilt vertalen.  Kaartinhoud doe je via data-nl / data-en
+     direct op het HTML-element — dat hoeft hier niet bij.
+     ============================================================ */
+  const translations = {
+    nl: {
+      'nav.projects':    'Projecten',
+      'nav.about':       'Over mij',
+      'hero.eyebrow':    'Portfolio · O&O · Brugklas',
+      'hero.greeting':   'Hoi, ik ben',
+      'hero.sub':        'Dit is mijn portfolio voor Onderzoek & Ontwerpen. Hier bewaar ik al mijn projecten, onderzoeken en ontwerpen uit de brugklas.',
+      'badge.oo':        'Onderzoek & Ontwerpen',
+      'badge.year':      'Schooljaar 2025–2026',
+      'badge.class':     'Brugklas',
+      'about.label':     'Over mij',
+      'about.text':      'Ik ben Felice en ik zit in de brugklas. Bij O&O leer ik onderzoek doen en dingen ontwerpen. Op deze pagina staan al mijn projecten.',
+      'projects.title':  'Projecten',
+      'card.addphoto':   'Foto toevoegen',
+      'card.more':       'Meer lezen',
+      'footer.text':     'Portfolio Felice Visser · O&O Brugklas',
+      'count.one':       '1 project',
+      'count.many':      '{n} projecten',
+    },
+    en: {
+      'nav.projects':    'Projects',
+      'nav.about':       'About me',
+      'hero.eyebrow':    'Portfolio · R&D · First Year',
+      'hero.greeting':   'Hi, I\'m',
+      'hero.sub':        'This is my portfolio for Research & Design. Here I collect all my projects, research and designs from my first year of secondary school.',
+      'badge.oo':        'Research & Design',
+      'badge.year':      'School Year 2025–2026',
+      'badge.class':     'First Year',
+      'about.label':     'About me',
+      'about.text':      'I\'m Felice and I\'m in my first year of secondary school. In R&D I learn how to do research and design things. All my projects are on this page.',
+      'projects.title':  'Projects',
+      'card.addphoto':   'Add photo',
+      'card.more':       'Read more',
+      'footer.text':     'Portfolio Felice Visser · R&D First Year',
+      'count.one':       '1 project',
+      'count.many':      '{n} projects',
+    }
+  };
+
+
+  /* ============================================================
+     TAAL INSTELLEN
+     Wordt aangeroepen door de NL / EN knoppen in de header,
+     en bij het laden van de pagina (default: NL).
+     ============================================================ */
+  function setLang(lang) {
+    const t = translations[lang];
+    if (!t) return;
+
+    // Fade-out
+    document.body.classList.add('lang-fade');
+
+    setTimeout(function () {
+
+      // Stel lang-attribuut in op <html>
+      document.documentElement.setAttribute('lang',      lang);
+      document.documentElement.setAttribute('data-lang', lang);
+
+      // Verwerk data-i18n elementen (UI-tekst)
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      // Verwerk data-nl / data-en elementen (kaartinhoud)
+      document.querySelectorAll('[data-nl], [data-en]').forEach(function (el) {
+        var val = el.getAttribute('data-' + lang);
+        if (val !== null) el.textContent = val;
+      });
+
+      // Paginatitel aanpassen
+      document.title = lang === 'nl'
+        ? 'Portfolio Felice Visser — O&O'
+        : 'Portfolio Felice Visser — R&D';
+
+      // Actieve knop bijwerken
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.classList.toggle('active', btn.id === 'btn-' + lang);
+      });
+
+      // Kaartenteller bijwerken
+      updateCount(lang, t);
+
+      // Fade-in
+      document.body.classList.remove('lang-fade');
+
+    }, 130);
+  }
+
+
+  /* ============================================================
+     KAARTENTELLER
+     Telt automatisch het aantal .card elementen en toont dit
+     naast de sectietitel. Geen actie nodig bij nieuwe kaarten.
+     ============================================================ */
+  function updateCount(lang, t) {
+    var n       = document.querySelectorAll('.cards-grid .card').length;
+    var countEl = document.getElementById('card-count');
+    if (!countEl || !t) return;
+    countEl.textContent = (n === 1)
+      ? t['count.one']
+      : t['count.many'].replace('{n}', n);
+  }
+
+
+  /* ============================================================
+     INITIALISATIE — start altijd in het Nederlands
+     ============================================================ */
+  document.addEventListener('DOMContentLoaded', function () {
+    setLang('nl');
+  });
+
+</script>
+
+</body>
+</html>
