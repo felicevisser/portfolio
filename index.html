@@ -3,623 +3,757 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio Felice Visser — O&amp;O</title>
+  <title>Portfolio Felice Visser — O&O</title>
 
-  <!-- Google Fonts: Space Grotesk (display) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
 
   <style>
-    /* ====================================================
-       DESIGN TOKENS — kleuren, fonts, schaduwen
-       ==================================================== */
     :root {
-      --indigo:        #5C5FDE;
-      --indigo-lt:     #EEEFFE;
-      --coral:         #FF6347;
-      --bg:            #F7F7FD;
-      --surface:       #FFFFFF;
-      --text:          #1A1A2E;
-      --muted:         #6E7191;
-      --border:        #E4E3F0;
-      --radius-sm:     8px;
-      --radius-md:     14px;
-      --radius-lg:     20px;
-      --shadow:        0 4px 24px rgba(92, 95, 222, 0.09);
-      --shadow-hover:  0 12px 40px rgba(92, 95, 222, 0.17);
-      --font-display:  'Space Grotesk', sans-serif;
-      --font-body:     'Inter', sans-serif;
+      --indigo:#6257e8;
+      --indigo-dark:#473bd0;
+      --indigo-lt:#f0efff;
+      --coral:#ff684d;
+      --bg:#f5f6fb;
+      --surface:#fff;
+      --text:#17182b;
+      --muted:#70738f;
+      --border:#e5e6f0;
+      --radius-sm:8px;
+      --radius-md:14px;
+      --radius-lg:20px;
+      --shadow:0 8px 30px rgba(36,31,91,.08);
+      --shadow-hover:0 18px 50px rgba(70,59,208,.16);
+      --font-display:'Space Grotesk',sans-serif;
+      --font-body:'Inter',sans-serif;
     }
 
-    /* ====================================================
-       RESET & BASE
-       ==================================================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html                   { scroll-behavior: smooth; }
+    *,*::before,*::after {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html {
+      scroll-behavior:smooth;
+    }
+
     body {
-      font-family: var(--font-body);
-      background:  var(--bg);
-      color:       var(--text);
-      line-height: 1.6;
-      min-height:  100vh;
+      font-family:var(--font-body);
+      background:
+        radial-gradient(circle at 10% 0%,rgba(98,87,232,.10),transparent 28rem),
+        radial-gradient(circle at 90% 15%,rgba(255,104,77,.08),transparent 24rem),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      min-height:100vh;
     }
-    img { display: block; max-width: 100%; height: auto; }
-    a   { color: inherit; text-decoration: none; }
 
-    /* ====================================================
-       HEADER
-       ==================================================== */
+    img {
+      display:block;
+      max-width:100%;
+      height:auto;
+    }
+
+    a {
+      color:inherit;
+      text-decoration:none;
+    }
+
+    /* HEADER */
+
     .site-header {
-      position:           sticky;
-      top:                0;
-      z-index:            100;
-      background:         rgba(247, 247, 253, 0.88);
-      backdrop-filter:    blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom:      1.5px solid var(--border);
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(245,246,251,.78);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(229,230,240,.8);
     }
+
     .header-inner {
-      max-width:      1100px;
-      margin:         0 auto;
-      padding:        0 28px;
-      height:         64px;
-      display:        flex;
-      align-items:    center;
-      justify-content: space-between;
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 28px;
+      height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
+
     .logo {
-      font-family:    var(--font-display);
-      font-weight:    700;
-      font-size:      1.05rem;
-      color:          var(--indigo);
-      letter-spacing: -0.02em;
+      font-family:var(--font-display);
+      font-weight:700;
+      font-size:1.12rem;
+      color:var(--indigo);
+      letter-spacing:-.02em;
     }
-    .logo span { color: var(--text); }
+
+    .logo::before {
+      content:"✦";
+      margin-right:7px;
+      color:var(--coral);
+    }
+
+    .logo span {
+      color:var(--text);
+    }
 
     .header-right {
-      display:     flex;
-      align-items: center;
-      gap:         28px;
+      display:flex;
+      align-items:center;
+      gap:28px;
     }
+
     .nav-link {
-      font-size:   0.88rem;
-      font-weight: 500;
-      color:       var(--muted);
-      transition:  color 0.2s;
+      font-size:.88rem;
+      font-weight:500;
+      color:var(--muted);
+      transition:color .2s;
     }
-    .nav-link:hover { color: var(--text); }
 
-    /* Taalknop */
+    .nav-link:hover {
+      color:var(--text);
+    }
+
     .lang-switch {
-      display:       flex;
-      align-items:   center;
-      background:    var(--surface);
-      border:        1.5px solid var(--border);
-      border-radius: 999px;
-      padding:       3px;
-      gap:           2px;
+      display:flex;
+      align-items:center;
+      background:var(--surface);
+      border:1.5px solid var(--border);
+      border-radius:999px;
+      padding:3px;
+      gap:2px;
     }
+
     .lang-btn {
-      border:         none;
-      background:     none;
-      cursor:         pointer;
-      font-family:    var(--font-display);
-      font-weight:    600;
-      font-size:      0.72rem;
-      padding:        4px 12px;
-      border-radius:  999px;
-      color:          var(--muted);
-      letter-spacing: 0.05em;
-      transition:     background 0.2s, color 0.2s;
+      border:none;
+      background:none;
+      cursor:pointer;
+      font-family:var(--font-display);
+      font-weight:600;
+      font-size:.72rem;
+      padding:4px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      letter-spacing:.05em;
+      transition:background .2s,color .2s;
     }
+
     .lang-btn.active {
-      background: var(--indigo);
-      color:      #fff;
+      background:var(--indigo);
+      color:#fff;
     }
 
-    /* ====================================================
-       HERO
-       ==================================================== */
+    /* HERO */
+
     .hero {
-      max-width: 1100px;
-      margin:    0 auto;
-      padding:   76px 28px 60px;
+      max-width:1100px;
+      margin:0 auto;
+      padding:92px 28px 72px;
     }
+
     .hero-eyebrow {
-      display:         inline-flex;
-      align-items:     center;
-      gap:             10px;
-      font-family:     var(--font-display);
-      font-size:       0.75rem;
-      font-weight:     700;
-      letter-spacing:  0.14em;
-      text-transform:  uppercase;
-      color:           var(--indigo);
-      margin-bottom:   22px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-family:var(--font-display);
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--indigo);
+      margin-bottom:22px;
     }
+
     .hero-eyebrow::before {
-      content:       '';
-      display:       block;
-      width:         28px;
-      height:        2px;
-      background:    var(--coral);
-      border-radius: 2px;
+      content:'';
+      display:block;
+      width:28px;
+      height:2px;
+      background:var(--coral);
+      border-radius:2px;
     }
+
     .hero-name {
-      font-family:    var(--font-display);
-      font-size:      clamp(2.8rem, 7vw, 5.4rem);
-      font-weight:    700;
-      line-height:    1.06;
-      letter-spacing: -0.03em;
-      margin-bottom:  22px;
+      font-family:var(--font-display);
+      font-size:clamp(3.2rem,8vw,6.3rem);
+      font-weight:700;
+      line-height:1.06;
+      letter-spacing:-.03em;
+      margin-bottom:22px;
+      max-width:900px;
     }
+
     .hero-name .accent {
-      background:              linear-gradient(130deg, var(--indigo) 0%, #9B5DE5 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip:         text;
+      background:linear-gradient(130deg,var(--indigo) 0%,#9B5DE5 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
     }
+
     .hero-sub {
-      font-size:     1.05rem;
-      color:         var(--muted);
-      max-width:     540px;
-      margin-bottom: 36px;
-      line-height:   1.75;
+      font-size:1.08rem;
+      color:var(--muted);
+      max-width:540px;
+      margin-bottom:36px;
+      line-height:1.75;
     }
+
     .hero-badges {
-      display:   flex;
-      flex-wrap: wrap;
-      gap:       10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
     }
+
     .badge {
-      font-family:    var(--font-display);
-      font-size:      0.78rem;
-      font-weight:    600;
-      padding:        6px 16px;
-      border-radius:  999px;
-      border:         1.5px solid var(--border);
-      background:     var(--surface);
-      color:          var(--muted);
-      letter-spacing: 0.01em;
+      font-family:var(--font-display);
+      font-size:.78rem;
+      font-weight:600;
+      padding:6px 16px;
+      border-radius:999px;
+      border:1.5px solid var(--border);
+      background:var(--surface);
+      color:var(--muted);
+      letter-spacing:.01em;
+      box-shadow:0 2px 10px rgba(30,30,70,.04);
     }
+
     .badge.filled {
-      background:    var(--indigo-lt);
-      border-color:  transparent;
-      color:         var(--indigo);
+      background:var(--indigo-lt);
+      border-color:transparent;
+      color:var(--indigo);
     }
 
-    /* ====================================================
-       OVER-MIJ STRIP
-       ==================================================== */
+    /* ABOUT */
+
     .about {
-      max-width: 1100px;
-      margin:    0 auto 56px;
-      padding:   0 28px;
+      max-width:1100px;
+      margin:0 auto 56px;
+      padding:0 28px;
     }
+
     .about-card {
-      background:   var(--surface);
-      border:       1.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding:      32px 36px;
-      display:      grid;
-      grid-template-columns: 1fr auto;
-      gap:          40px;
-      align-items:  center;
+      position:relative;
+      background:var(--surface);
+      border:1.5px solid var(--border);
+      border-radius:var(--radius-lg);
+      padding:32px 36px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:40px;
+      align-items:center;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
+
+    .about-card::after {
+      content:"";
+      position:absolute;
+      width:180px;
+      height:180px;
+      right:-75px;
+      top:-90px;
+      border-radius:50%;
+      background:linear-gradient(
+        135deg,
+        rgba(98,87,232,.15),
+        rgba(255,104,77,.12)
+      );
+    }
+
     .about-label {
-      font-family:    var(--font-display);
-      font-size:      0.7rem;
-      font-weight:    700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color:          var(--coral);
-      margin-bottom:  10px;
+      font-family:var(--font-display);
+      font-size:.7rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--coral);
+      margin-bottom:10px;
     }
+
     .about-text {
-      font-size:   1rem;
-      color:       var(--muted);
-      max-width:   520px;
-      line-height: 1.75;
+      font-size:1rem;
+      color:var(--muted);
+      max-width:520px;
+      line-height:1.75;
     }
+
     .about-avatar {
-      width:          88px;
-      height:         88px;
-      border-radius:  50%;
-      background:     var(--indigo-lt);
-      border:         3px solid var(--indigo);
-      display:        flex;
-      align-items:    center;
-      justify-content: center;
-      font-family:    var(--font-display);
-      font-size:      1.9rem;
-      font-weight:    700;
-      color:          var(--indigo);
-      flex-shrink:    0;
-      user-select:    none;
+      position:relative;
+      z-index:1;
+      width:88px;
+      height:88px;
+      border-radius:50%;
+      background:var(--indigo-lt);
+      border:3px solid var(--indigo);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:var(--font-display);
+      font-size:1.9rem;
+      font-weight:700;
+      color:var(--indigo);
+      flex-shrink:0;
+      user-select:none;
+      box-shadow:0 8px 25px rgba(98,87,232,.18);
     }
 
-    /* ====================================================
-       PROJECTEN-SECTIE
-       ==================================================== */
+    /* PROJECTS */
+
     .projects {
-      max-width: 1100px;
-      margin:    0 auto;
-      padding:   0 28px 90px;
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 28px 100px;
     }
+
     .section-header {
-      display:         flex;
-      align-items:     baseline;
-      justify-content: space-between;
-      margin-bottom:   32px;
-      padding-bottom:  16px;
-      border-bottom:   1.5px solid var(--border);
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      margin-bottom:26px;
+      padding-bottom:16px;
+      border-bottom:1.5px solid var(--border);
     }
+
     .section-title {
-      font-family:    var(--font-display);
-      font-size:      1.45rem;
-      font-weight:    700;
-      letter-spacing: -0.02em;
+      font-family:var(--font-display);
+      font-size:1.65rem;
+      font-weight:700;
+      letter-spacing:-.02em;
     }
+
     .section-count {
-      font-size: 0.82rem;
-      color:     var(--muted);
+      font-size:.82rem;
+      color:var(--muted);
     }
 
-    /* Kaartgrid */
     .cards-grid {
-      display:               grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:                   24px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:26px;
     }
 
-    /* ====================================================
-       KAART (CARD)
-       ==================================================== */
+    /* CARD */
+
     .card {
-      background:     var(--surface);
-      border-radius:  var(--radius-lg);
-      border:         1.5px solid var(--border);
-      overflow:       hidden;
-      display:        flex;
-      flex-direction: column;
-      box-shadow:     var(--shadow);
-      transition:     transform 0.25s ease, box-shadow 0.25s ease;
+      background:var(--surface);
+      border-radius:var(--radius-lg);
+      border:1.5px solid rgba(220,221,234,.9);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      box-shadow:var(--shadow);
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
     }
+
     .card:hover {
-      transform:  translateY(-5px);
-      box-shadow: var(--shadow-hover);
+      transform:translateY(-7px);
+      box-shadow:var(--shadow-hover);
+      border-color:rgba(98,87,232,.25);
     }
 
-    /* Fotovak */
     .card-photo {
-      position:     relative;
-      width:        100%;
-      aspect-ratio: 16 / 10;
-      overflow:     hidden;
-      background:   var(--indigo-lt);
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      overflow:hidden;
+      background:var(--indigo-lt);
     }
+
     .card-photo img {
-      width:      100%;
-      height:     100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .4s ease;
     }
-    .card:hover .card-photo img { transform: scale(1.04); }
 
-    /* Placeholder (zichtbaar als er géén foto is) */
+    .card:hover .card-photo img {
+      transform:scale(1.04);
+    }
+
+    .card-photo::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to top,
+        rgba(20,20,45,.13),
+        transparent 45%
+      );
+      pointer-events:none;
+    }
+
     .card-photo-placeholder {
-      position:        absolute;
-      inset:           0;
-      display:         flex;
-      flex-direction:  column;
-      align-items:     center;
-      justify-content: center;
-      gap:             10px;
-      color:           var(--indigo);
-      opacity:         0.45;
-      pointer-events:  none;
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      color:var(--indigo);
+      opacity:.45;
+      pointer-events:none;
     }
-    .card-photo-placeholder svg  { width: 38px; height: 38px; }
+
     .card-photo-placeholder span {
-      font-family:    var(--font-display);
-      font-size:      0.72rem;
-      font-weight:    600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-family:var(--font-display);
+      font-size:.72rem;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase;
     }
-    /* Verberg placeholder zodra er een img aanwezig is */
-    .card-photo img ~ .card-photo-placeholder { display: none; }
 
-    /* Kaartinhoud */
+    .card-photo img ~ .card-photo-placeholder {
+      display:none;
+    }
+
+    /* CARD BODY */
+
     .card-body {
-      padding:        20px 22px 22px;
-      display:        flex;
-      flex-direction: column;
-      flex:           1;
+      padding:23px 24px 24px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
     }
+
     .card-meta {
-      display:         flex;
-      align-items:     center;
-      justify-content: space-between;
-      margin-bottom:   10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:10px;
     }
+
     .card-tag {
-      font-family:    var(--font-display);
-      font-size:      0.68rem;
-      font-weight:    700;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color:          var(--indigo);
-      background:     var(--indigo-lt);
-      padding:        3px 10px;
-      border-radius:  999px;
+      font-family:var(--font-display);
+      font-size:.68rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      color:var(--indigo);
+      background:var(--indigo-lt);
+      padding:3px 10px;
+      border-radius:999px;
     }
+
     .card-num {
-      font-family: var(--font-display);
-      font-size:   0.73rem;
-      color:       var(--muted);
-      font-weight: 500;
+      font-family:var(--font-display);
+      font-size:.73rem;
+      color:var(--muted);
+      font-weight:500;
     }
+
     .card-title {
-      font-family:    var(--font-display);
-      font-size:      1.08rem;
-      font-weight:    700;
-      letter-spacing: -0.01em;
-      margin-bottom:  8px;
-      color:          var(--text);
+      font-family:var(--font-display);
+      font-size:1.16rem;
+      font-weight:700;
+      letter-spacing:-.01em;
+      margin-bottom:8px;
+      color:var(--text);
     }
+
     .card-desc {
-      font-size:     0.87rem;
-      color:         var(--muted);
-      line-height:   1.68;
-      flex:          1;
-      margin-bottom: 18px;
+      font-size:.87rem;
+      color:var(--muted);
+      line-height:1.68;
+      flex:1;
+      margin-bottom:14px;
+
+      /* DIT zorgt ervoor dat de lange tekst eerst ingekort wordt */
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
     }
+
+    /* VOLLEDIGE TEKST ALS KAART OPEN IS */
+
+    .card.expanded .card-desc {
+      display:block;
+      -webkit-line-clamp:unset;
+      overflow:visible;
+    }
+
+    /* MEER LEZEN KNOP */
+
+    .card-toggle {
+      width:100%;
+      margin-top:2px;
+      border:0;
+      background:var(--indigo-lt);
+      color:var(--indigo-dark);
+      border-radius:11px;
+      padding:10px 13px;
+      font-family:var(--font-display);
+      font-size:.78rem;
+      font-weight:700;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:
+        background .2s,
+        transform .2s;
+    }
+
+    .card-toggle:hover {
+      background:#e4e2ff;
+    }
+
+    .card-toggle:active {
+      transform:scale(.98);
+    }
+
+    .card-toggle svg {
+      width:14px;
+      height:14px;
+      transition:transform .25s;
+    }
+
+    .card.expanded .card-toggle svg {
+      transform:rotate(180deg);
+    }
+
+    .card.expanded .card-desc {
+      animation:cardOpen .28s ease;
+    }
+
+    @keyframes cardOpen {
+      from {
+        opacity:.5;
+        transform:translateY(-3px);
+      }
+      to {
+        opacity:1;
+        transform:none;
+      }
+    }
+
+    /* FOOTER VAN CARD */
+
     .card-footer {
-      display:         flex;
-      align-items:     center;
-      justify-content: space-between;
-      padding-top:     14px;
-      border-top:      1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding-top:14px;
+      margin-top:14px;
+      border-top:1px solid var(--border);
     }
+
     .card-date {
-      font-size: 0.76rem;
-      color:     var(--muted);
+      font-size:.76rem;
+      color:var(--muted);
     }
-    .card-link {
-      display:     flex;
-      align-items: center;
-      gap:         5px;
-      font-family: var(--font-display);
-      font-size:   0.78rem;
-      font-weight: 600;
-      color:       var(--indigo);
-      transition:  gap 0.2s;
-    }
-    .card-link:hover   { gap: 9px; }
-    .card-link svg     { width: 13px; height: 13px; }
 
-    /* ====================================================
-       FOOTER
-       ==================================================== */
+    /* ALLES UITKLAPPEN */
+
+    .toggle-all {
+      border:1px solid var(--border);
+      background:var(--surface);
+      color:var(--indigo-dark);
+      border-radius:999px;
+      padding:7px 12px;
+      font-family:var(--font-display);
+      font-size:.72rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .toggle-all:hover {
+      border-color:var(--indigo);
+      background:var(--indigo-lt);
+    }
+
+    /* FOOTER */
+
     .site-footer {
-      border-top: 1.5px solid var(--border);
-      padding:    26px 28px;
-    }
-    .footer-inner {
-      max-width:       1100px;
-      margin:          0 auto;
-      display:         flex;
-      align-items:     center;
-      justify-content: space-between;
-      flex-wrap:       wrap;
-      gap:             10px;
-    }
-    .footer-text {
-      font-size: 0.8rem;
-      color:     var(--muted);
-    }
-    .footer-mark {
-      font-family: var(--font-display);
-      font-size:   0.8rem;
-      font-weight: 600;
-      color:       var(--indigo);
+      border-top:1.5px solid var(--border);
+      padding:26px 28px;
     }
 
-    /* ====================================================
-       TAALWISSEL FADE
-       ==================================================== */
+    .footer-inner {
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .footer-text {
+      font-size:.8rem;
+      color:var(--muted);
+    }
+
+    .footer-mark {
+      font-family:var(--font-display);
+      font-size:.8rem;
+      font-weight:600;
+      color:var(--indigo);
+    }
+
+    /* LANGUAGE FADE */
+
     body.lang-fade [data-i18n],
     body.lang-fade [data-nl],
     body.lang-fade [data-en] {
-      opacity:    0;
-      transition: opacity 0.12s ease;
+      opacity:0;
+      transition:opacity .12s ease;
     }
 
-    /* ====================================================
-       RESPONSIVE
-       ==================================================== */
-    @media (max-width: 900px) {
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px) {
-      .cards-grid         { grid-template-columns: 1fr; }
-      .about-card         { grid-template-columns: 1fr; }
-      .about-avatar       { display: none; }
-      .nav-link           { display: none; }
-      .hero               { padding-top: 52px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .card, .card-photo img, .card-link { transition: none; }
-    }
-  
-/* ===== PORTFOLIO UPGRADE ===== */
-:root{
-  --indigo:#6257e8;
-  --indigo-dark:#473bd0;
-  --indigo-lt:#f0efff;
-  --coral:#ff684d;
-  --bg:#f5f6fb;
-  --surface:#fff;
-  --text:#17182b;
-  --muted:#70738f;
-  --border:#e5e6f0;
-  --shadow:0 8px 30px rgba(36,31,91,.08);
-  --shadow-hover:0 18px 50px rgba(70,59,208,.16);
-}
-body{
-  background:
-    radial-gradient(circle at 10% 0%,rgba(98,87,232,.10),transparent 28rem),
-    radial-gradient(circle at 90% 15%,rgba(255,104,77,.08),transparent 24rem),
-    var(--bg);
-}
-.site-header{background:rgba(245,246,251,.78);border-bottom:1px solid rgba(229,230,240,.8)}
-.logo{font-size:1.12rem}
-.logo::before{content:"✦";margin-right:7px;color:var(--coral)}
-.hero{padding-top:92px;padding-bottom:72px}
-.hero-name{font-size:clamp(3.2rem,8vw,6.3rem);max-width:900px}
-.hero-sub{font-size:1.08rem}
-.hero-badges .badge{box-shadow:0 2px 10px rgba(30,30,70,.04)}
-.about-card{
-  position:relative;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-.about-card::after{
-  content:"";
-  position:absolute;
-  width:180px;height:180px;
-  right:-75px;top:-90px;
-  border-radius:50%;
-  background:linear-gradient(135deg,rgba(98,87,232,.15),rgba(255,104,77,.12));
-}
-.about-avatar{position:relative;z-index:1;box-shadow:0 8px 25px rgba(98,87,232,.18)}
-.projects{padding-bottom:100px}
-.section-header{margin-bottom:26px}
-.section-title{font-size:1.65rem}
-.cards-grid{gap:26px}
-.card{
-  border-color:rgba(220,221,234,.9);
-  box-shadow:var(--shadow);
-  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
-}
-.card:hover{
-  transform:translateY(-7px);
-  box-shadow:var(--shadow-hover);
-  border-color:rgba(98,87,232,.25);
-}
-.card-photo{aspect-ratio:16/9}
-.card-photo::after{
-  content:"";
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(20,20,45,.13),transparent 45%);
-  pointer-events:none;
-}
-.card-body{padding:23px 24px 24px}
-.card-title{font-size:1.16rem}
-.card-desc{
-  margin-bottom:14px;
-  display:-webkit-box;
-  -webkit-line-clamp:3;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-}
-.card.expanded .card-desc{
-  display:block;
-  -webkit-line-clamp:unset;
-  overflow:visible;
-}
-.card-toggle{
-  width:100%;
-  margin-top:2px;
-  border:0;
-  background:var(--indigo-lt);
-  color:var(--indigo-dark);
-  border-radius:11px;
-  padding:10px 13px;
-  font-family:var(--font-display);
-  font-size:.78rem;
-  font-weight:700;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  transition:background .2s,transform .2s;
-}
-.card-toggle:hover{background:#e4e2ff}
-.card-toggle:active{transform:scale(.98)}
-.card-toggle svg{width:14px;height:14px;transition:transform .25s}
-.card.expanded .card-toggle svg{transform:rotate(180deg)}
-.card.expanded .card-desc{animation:cardOpen .28s ease}
-@keyframes cardOpen{from{opacity:.5;transform:translateY(-3px)}to{opacity:1;transform:none}}
-.card-footer{margin-top:14px}
-.toggle-all{
-  border:1px solid var(--border);
-  background:var(--surface);
-  color:var(--indigo-dark);
-  border-radius:999px;
-  padding:7px 12px;
-  font-family:var(--font-display);
-  font-size:.72rem;
-  font-weight:700;
-  cursor:pointer;
-  transition:.2s;
-}
-.toggle-all:hover{border-color:var(--indigo);background:var(--indigo-lt)}
-@media(max-width:640px){.toggle-all{font-size:.68rem;padding:6px 9px}.section-header{align-items:center}}
-.back-top{
-  position:fixed;right:22px;bottom:22px;
-  width:44px;height:44px;border:1px solid var(--border);
-  border-radius:50%;background:rgba(255,255,255,.9);
-  box-shadow:0 8px 24px rgba(30,30,70,.12);
-  color:var(--indigo);cursor:pointer;display:grid;place-items:center;
-  opacity:0;pointer-events:none;transform:translateY(10px);
-  transition:.25s;z-index:90;
-}
-.back-top.show{opacity:1;pointer-events:auto;transform:none}
-@media(max-width:640px){
-  .hero{padding-top:64px}
-  .hero-name{font-size:clamp(2.8rem,15vw,4.5rem)}
-  .about-card{padding:27px}
-  .card-body{padding:20px}
-}
+    /* BACK TO TOP */
 
+    .back-top {
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:44px;
+      height:44px;
+      border:1px solid var(--border);
+      border-radius:50%;
+      background:rgba(255,255,255,.9);
+      box-shadow:0 8px 24px rgba(30,30,70,.12);
+      color:var(--indigo);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(10px);
+      transition:.25s;
+      z-index:90;
+    }
+
+    .back-top.show {
+      opacity:1;
+      pointer-events:auto;
+      transform:none;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px) {
+      .cards-grid {
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:640px) {
+      .cards-grid {
+        grid-template-columns:1fr;
+      }
+
+      .about-card {
+        grid-template-columns:1fr;
+        padding:27px;
+      }
+
+      .about-avatar {
+        display:none;
+      }
+
+      .nav-link {
+        display:none;
+      }
+
+      .hero {
+        padding-top:64px;
+      }
+
+      .hero-name {
+        font-size:clamp(2.8rem,15vw,4.5rem);
+      }
+
+      .card-body {
+        padding:20px;
+      }
+
+      .toggle-all {
+        font-size:.68rem;
+        padding:6px 9px;
+      }
+
+      .section-header {
+        align-items:center;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .card,
+      .card-photo img,
+      .card-link,
+      .card-desc {
+        transition:none;
+        animation:none;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
+<!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
 
-    <div class="logo">Felice<span> Visser</span></div>
+    <div class="logo">
+      Felice<span> Visser</span>
+    </div>
 
     <nav class="header-right" aria-label="Navigatie">
-      <a href="#projecten" class="nav-link" data-i18n="nav.projects">Projecten</a>
-      <a href="#over"      class="nav-link" data-i18n="nav.about">Over mij</a>
 
-      <!-- Taalschakelaar / Language switch -->
+      <a href="#projecten"
+         class="nav-link"
+         data-i18n="nav.projects">
+        Projecten
+      </a>
+
+      <a href="#over"
+         class="nav-link"
+         data-i18n="nav.about">
+        Over mij
+      </a>
+
       <div class="lang-switch" role="group" aria-label="Taal kiezen">
-        <button class="lang-btn active" id="btn-nl" onclick="setLang('nl')">NL</button>
-        <button class="lang-btn"        id="btn-en" onclick="setLang('en')">EN</button>
-      </div>
-    </nav>
 
+        <button
+          class="lang-btn active"
+          id="btn-nl"
+          type="button"
+          onclick="setLang('nl')">
+          NL
+        </button>
+
+        <button
+          class="lang-btn"
+          id="btn-en"
+          type="button"
+          onclick="setLang('en')">
+          EN
+        </button>
+
+      </div>
+
+    </nav>
   </div>
 </header>
 
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
+<!-- HERO -->
 <section class="hero">
 
-  <div class="hero-eyebrow" data-i18n="hero.eyebrow">Portfolio · O&amp;O · Brugklas</div>
+  <div class="hero-eyebrow" data-i18n="hero.eyebrow">
+    Portfolio · O&O · Brugklas
+  </div>
 
   <h1 class="hero-name">
     <span data-i18n="hero.greeting">Hoi, ik ben</span><br>
@@ -628,433 +762,1094 @@ body{
 
   <p class="hero-sub" data-i18n="hero.sub">
     Dit is mijn portfolio voor Onderzoek &amp; Ontwerpen.
-    Hier bewaar ik mijn projecten.
+    Hier bewaar ik al mijn projecten, onderzoeken en ontwerpen uit de brugklas.
   </p>
 
   <div class="hero-badges">
-    <span class="badge filled" data-i18n="badge.oo">Onderzoek &amp; Ontwerpen</span>
-    <span class="badge"        data-i18n="badge.year">Schooljaar 2025–2026</span>
-    <span class="badge"        data-i18n="badge.class">Brugklas</span>
+
+    <span class="badge filled" data-i18n="badge.oo">
+      Onderzoek &amp; Ontwerpen
+    </span>
+
+    <span class="badge" data-i18n="badge.year">
+      Schooljaar 2025–2026
+    </span>
+
+    <span class="badge" data-i18n="badge.class">
+      Brugklas
+    </span>
+
   </div>
 
 </section>
 
 
-<!-- ============================================================
-     OVER MIJ
-     ============================================================ -->
+<!-- OVER MIJ -->
 <section class="about" id="over">
+
   <div class="about-card">
+
     <div>
-      <div class="about-label" data-i18n="about.label">Over mij</div>
+
+      <div class="about-label" data-i18n="about.label">
+        Over mij
+      </div>
+
       <p class="about-text" data-i18n="about.text">
-        Ik ben Felice ik ben 12 jaar oud en ik zit in de brugklas. Bij O&amp;O leer ik onderzoek doen en
-        dingen ontwerpen. Op deze pagina staan al mijn projecten.
+        Ik ben Felice en ik zit in de brugklas.
+        Bij O&amp;O leer ik onderzoek doen en dingen ontwerpen.
+        Op deze pagina staan al mijn projecten.
       </p>
+
     </div>
-    <div class="about-avatar" aria-hidden="true">FV</div>
+
+    <div class="about-avatar" aria-hidden="true">
+      FV
+    </div>
+
   </div>
+
 </section>
 
 
-<!-- ============================================================
-     PROJECTEN
-     ============================================================ -->
+<!-- PROJECTEN -->
 <section class="projects" id="projecten">
 
   <div class="section-header">
-    <h2 class="section-title" data-i18n="projects.title">Projecten</h2>
+
+    <h2 class="section-title" data-i18n="projects.title">
+      Projecten
+    </h2>
+
     <div style="display:flex;align-items:center;gap:12px;">
-      <button class="toggle-all" id="toggle-all" type="button">Alles uitklappen</button>
-      <span class="section-count" id="card-count"></span>
+
+      <button
+        class="toggle-all"
+        id="toggle-all"
+        type="button">
+        Alles uitklappen
+      </button>
+
+      <span
+        class="section-count"
+        id="card-count">
+      </span>
+
     </div>
+
   </div>
 
 
-<div class="cards-grid">
+  <div class="cards-grid">
 
-  <!-- KAART 001 -->
-  <article class="card">
-    <div class="card-photo">
-      <img src="hierkbfoto.png" alt="Knikkerbaan">
-    </div>
 
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-tag" data-nl="Onderzoek" data-en="Research"></span>
-        <span class="card-num">001</span>
+    <!-- KAART 001 -->
+    <article class="card">
+
+      <div class="card-photo">
+
+        <img
+          src="hierkbfoto.png"
+          alt="Knikkerbaan">
+
       </div>
 
-      <h3 class="card-title"
+
+      <div class="card-body">
+
+        <div class="card-meta">
+
+          <span
+            class="card-tag"
+            data-nl="Onderzoek"
+            data-en="Research">
+          </span>
+
+          <span class="card-num">
+            001
+          </span>
+
+        </div>
+
+
+        <h3
+          class="card-title"
           data-nl="Knikkerbaan"
-          data-en="Marble Track"></h3>
+          data-en="Marble Track">
+        </h3>
 
-      <p class="card-desc"
-         data-nl="Dit was ons eerste project en onze docent zij dat dit het leukste project van het jaar zou worden.Het was wel appart in plaats van een normalle knikkerbaan moesten we een slome knikkerbaan maken. Dus ik zat in mijn eerste groepje en onze docent ging uitleggten hoe we dit project gingen doen. We moesten een idee bedenken en we moesten een schets maaken die schets was snel goedgekeurd dus we konden snel door. We hadden wel maar een bepekt aantal spullen om te gebruiken.Maar dat hielt ons niet tegen om goede iddeeen te bedenken we hadden het karton in tweeen getrokken waardoor bobbeltjes onstonden die de knikker langzaam liet gaan. De samenwerking ging geweldig we hadden niet de beste maar wel een goed cijver."
-         data-en="This was our first project, and our teacher said it would be the most fun project of the year. It was quite unusual; instead of a normal marble run, we were required to make a slow one. So, I was in my first segment, and our teacher started explaining how we were going to do this project. We had to come up with an idea and make a sketch; that sketch was quickly approved, so we could move on fast. We did have a limited number of materials to use, though. But that didn't stop us from coming up with good ideas, like tearing the cardboard in half, creating bumps that made the marble go slowly. The collaboration went great; we didn't get the best grade, but we did get a good one."></p>
 
-      
-        <button class="card-toggle" type="button" aria-expanded="false">
-          <span class="toggle-text">Meer lezen</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <p
+          class="card-desc"
+          data-nl="Dit was ons eerste project en onze docent zij dat dit het leukste project van het jaar zou worden.Het was wel appart in plaats van een normalle knikkerbaan moesten we een slome knikkerbaan maken. Dus ik zat in mijn eerste groepje en onze docent ging uitleggten hoe we dit project gingen doen. We moesten een idee bedenken en we moesten een schets maaken die schets was snel goedgekeurd dus we konden snel door. We hadden wel maar een bepekt aantal spullen om te gebruiken.Maar dat hielt ons niet tegen om goede iddeeen te bedenken we hadden het karton in tweeen getrokken waardoor bobbeltjes onstonden die de knikker langzaam liet gaan. De samenwerking ging geweldig we hadden niet de beste maar wel een goed cijver."
+          data-en="This was our first project, and our teacher said it would be the most fun project of the year. It was quite unusual; instead of a normal marble run, we were required to make a slow one. So, I was in my first group, and our teacher started explaining how we were going to do this project. We had to come up with an idea and make a sketch; that sketch was quickly approved, so we could move on fast. We did have a limited number of materials to use, though. But that didn't stop us from coming up with good ideas, like tearing the cardboard in half, creating bumps that made the marble go slowly. The collaboration went great; we didn't get the best grade, but we did get a good one.">
+        </p>
+
+
+        <button
+          class="card-toggle"
+          type="button"
+          aria-expanded="false">
+
+          <span class="toggle-text">
+            Meer lezen
+          </span>
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true">
+
             <path d="m6 9 6 6 6-6"/>
+
           </svg>
+
         </button>
-<div class="card-footer">
-        <span class="card-date">2025</span>
-      </div>
-    </div>
-  </article>
 
-  <!-- KAART 002 -->
-  <article class="card">
-    <div class="card-photo">
-      <div class="card-photo-placeholder">
-        <span data-i18n="card.addphoto">Foto toevoegen</span>
-      </div>
-    </div>
 
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-tag" data-nl="Ontwerpen" data-en="Design"></span>
-        <span class="card-num">002</span>
+        <div class="card-footer">
+
+          <span class="card-date">
+            2025
+          </span>
+
+        </div>
+
       </div>
 
-      <h3 class="card-title"
+    </article>
+
+
+    <!-- KAART 002 -->
+    <article class="card">
+
+      <div class="card-photo">
+
+        <div class="card-photo-placeholder">
+
+          <span data-i18n="card.addphoto">
+            Foto toevoegen
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="card-body">
+
+        <div class="card-meta">
+
+          <span
+            class="card-tag"
+            data-nl="Ontwerpen"
+            data-en="Design">
+          </span>
+
+          <span class="card-num">
+            002
+          </span>
+
+        </div>
+
+
+        <h3
+          class="card-title"
           data-nl="Vakkanjers Project"
-          data-en="Vakkanjers Project"></h3>
+          data-en="Vakkanjers Project">
+        </h3>
 
-      <p class="card-desc"
-         data-nl="Vakanjers was een project wat een wedstrijd was je moest iets bedenken om een festival moderner en we moesten zorgen dat mensen meer gingen opruimen. We moesten als eerste een brainstormen en daarna moesten we een web maken met onze ideeen en daarna moesten we een ontwerp maken ons ontwerp was vaak afgekeurd maar toen hij was goedgekeurd konden we door, daarna begonnen we met bouwen en daar deden we wel 6 lessen over ik deed het meeste van snij, laser en 3d prints en de andere deden dan iets anders.We hadden niet gewonnen maar wel een goed cijver."
-         data-en="Vakanjers was a project that was a competition. You had to come up with something to make a festival more modern, and we had to ensure that people cleaned up more. First, we had to brainstorm, then we had to create a web with our ideas, and after that, we had to make a design. Our design was often rejected, but once it was approved, we could proceed. Then we started building, and that took us about six lessons. I did most of the cutting, laser cutting, and 3D printing, while the others did something else. We didn't win, but we did get a good grade."></p>
 
-      
-        <button class="card-toggle" type="button" aria-expanded="false">
-          <span class="toggle-text">Meer lezen</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <p
+          class="card-desc"
+          data-nl="Vakanjers was een project wat een wedstrijd was je moest iets bedenken om een festival moderner en we moesten zorgen dat mensen meer gingen opruimen. We moesten als eerste een brainstormen en daarna moesten we een web maken met onze ideeen en daarna moesten we een ontwerp maken ons ontwerp was vaak afgekeurd maar toen hij was goedgekeurd konden we door, daarna begonnen we met bouwen en daar deden we wel 6 lessen over ik deed het meeste van snij, laser en 3d prints en de andere deden dan iets anders.We hadden niet gewonnen maar wel een goed cijver."
+          data-en="Vakanjers was a project that was a competition. You had to come up with something to make a festival more modern, and we had to ensure that people cleaned up more. First, we had to brainstorm, then we had to create a web with our ideas, and after that, we had to make a design. Our design was often rejected, but once it was approved, we could proceed. Then we started building, and that took us about six lessons. I did most of the cutting, laser cutting, and 3D printing, while the others did something else. We didn't win, but we did get a good grade.">
+        </p>
+
+
+        <button
+          class="card-toggle"
+          type="button"
+          aria-expanded="false">
+
+          <span class="toggle-text">
+            Meer lezen
+          </span>
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true">
+
             <path d="m6 9 6 6 6-6"/>
+
           </svg>
+
         </button>
-<div class="card-footer">
-        <span class="card-date">2025</span>
-      </div>
-    </div>
-  </article>
 
-  <!-- KAART 003 -->
-  <article class="card">
-    <div class="card-photo">
-      <div class="card-photo-placeholder">
-        <span data-i18n="card.addphoto">Foto toevoegen</span>
-      </div>
-    </div>
 
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-tag" data-nl="Technologie" data-en="Technology"></span>
-        <span class="card-num">003</span>
+        <div class="card-footer">
+
+          <span class="card-date">
+            2025
+          </span>
+
+        </div>
+
       </div>
 
-      <h3 class="card-title"
+    </article>
+
+
+    <!-- KAART 003 -->
+    <article class="card">
+
+      <div class="card-photo">
+
+        <div class="card-photo-placeholder">
+
+          <span data-i18n="card.addphoto">
+            Foto toevoegen
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="card-body">
+
+        <div class="card-meta">
+
+          <span
+            class="card-tag"
+            data-nl="Technologie"
+            data-en="Technology">
+          </span>
+
+          <span class="card-num">
+            003
+          </span>
+
+        </div>
+
+
+        <h3
+          class="card-title"
           data-nl="Blauwalg bestrijden voor Zuiderzeeenmuseum"
-          data-en="Combating blue-green algae for Zuiderzee Museum"></h3>
+          data-en="Combating blue-green algae for Zuiderzee Museum">
+        </h3>
 
-      <p class="card-desc"
-         data-nl="blauwalg zuiderzeemuseum zo leuk eerst naar het zuiderzeemuseum het was wel interesant. Toen ze het probleem gingen uitlechen dacht ik al dit is toch niet te doen. Hoe moeten we dat doen. Dus toen we terug kwamen van het zuiderzeemuseum moesten we weer het proces bedenken brainstormen maar dit was anders we moesten 10 iddeeenbedenken 3 echte luitkiezen en 10 eisen bedenken die moesten we in een haris profiel doen en met die uitslag moesten we een keuze maken wij kozen voor een combie omdat water laten bewegen niet allen helpt dus maakte we het ook nog kouder. De samenwerking ging goed alleen bij een van mijn teamgenoten had ik soms wel een soorgt ruzietje omdat hij niks deed ik heb inzet getoont en dat zaggen mijn teamgenoten ook we hadden het ontwerp men al heel snel af waardoor ons prototype heel mooi was. We hadden niet gewonnen maar ik denk wel een goed cijver."
-         data-en="Blue algae Zuiderzee Museum, so nice. First we went to the Zuiderzee Museum; it was quite interesting. When they started explaining the problem, I already thought, "This is impossible. How are we supposed to do this?" So when we came back from the Zuiderzee Museum, we had to devise the process again, brainstorm, but this was different. We had to come up with 10 ideas, choose 3 real ones, and come up with 10 requirements. We had to put those into a Haris profile, and with that result, we had to make a choice. We chose a combination because moving the water doesn't help on its own, so we also made it colder. The collaboration went well, although I did have a bit of a quarrel with one of my teammates sometimes because he wasn't doing anything. I showed commitment, and my teammates saw that too. We finished the design very quickly, which made our prototype look very nice. We didn't win, but I think we got a good grade."></p>
 
-      
-        <button class="card-toggle" type="button" aria-expanded="false">
-          <span class="toggle-text">Meer lezen</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <p
+          class="card-desc"
+          data-nl="blauwalg zuiderzeemuseum zo leuk eerst naar het zuiderzeemuseum het was wel interesant. Toen ze het probleem gingen uitlechen dacht ik al dit is toch niet te doen. Hoe moeten we dat doen. Dus toen we terug kwamen van het zuiderzeemuseum moesten we weer het proces bedenken brainstormen maar dit was anders we moesten 10 iddeeenbedenken 3 echte luitkiezen en 10 eisen bedenken die moesten we in een haris profiel doen en met die uitslag moesten we een keuze maken wij kozen voor een combie omdat water laten bewegen niet allen helpt dus maakte we het ook nog kouder. De samenwerking ging goed alleen bij een van mijn teamgenoten had ik soms wel een soorgt ruzietje omdat hij niks deed ik heb inzet getoont en dat zaggen mijn teamgenoten ook we hadden het ontwerp men al heel snel af waardoor ons prototype heel mooi was. We hadden niet gewonnen maar ik denk wel een goed cijver."
+          data-en="Blue algae Zuiderzee Museum, so nice. First we went to the Zuiderzee Museum; it was quite interesting. When they started explaining the problem, I already thought, 'This is impossible. How are we supposed to do this?' So when we came back from the Zuiderzee Museum, we had to devise the process again, brainstorm, but this was different. We had to come up with 10 ideas, choose 3 real ones, and come up with 10 requirements. We had to put those into a Haris profile, and with that result, we had to make a choice. We chose a combination because moving the water doesn't help on its own, so we also made it colder. The collaboration went well, although I did have a bit of a quarrel with one of my teammates sometimes because he wasn't doing anything. I showed commitment, and my teammates saw that too. We finished the design very quickly, which made our prototype look very nice. We didn't win, but I think we got a good grade.">
+        </p>
+
+
+        <button
+          class="card-toggle"
+          type="button"
+          aria-expanded="false">
+
+          <span class="toggle-text">
+            Meer lezen
+          </span>
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true">
+
             <path d="m6 9 6 6 6-6"/>
+
           </svg>
+
         </button>
-<div class="card-footer">
-        <span class="card-date">2026</span>
-      </div>
-    </div>
-  </article>
 
-  <!-- KAART 004 -->
-  <article class="card">
-    <div class="card-photo">
-      <div class="card-photo-placeholder">
-        <span data-i18n="card.addphoto">Foto toevoegen</span>
-      </div>
-    </div>
 
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-tag" data-nl="Onderzoek" data-en="Research"></span>
-        <span class="card-num">004</span>
+        <div class="card-footer">
+
+          <span class="card-date">
+            2026
+          </span>
+
+        </div>
+
       </div>
 
-      <h3 class="card-title"
+    </article>
+
+
+    <!-- KAART 004 -->
+    <article class="card">
+
+      <div class="card-photo">
+
+        <div class="card-photo-placeholder">
+
+          <span data-i18n="card.addphoto">
+            Foto toevoegen
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="card-body">
+
+        <div class="card-meta">
+
+          <span
+            class="card-tag"
+            data-nl="Onderzoek"
+            data-en="Research">
+          </span>
+
+          <span class="card-num">
+            004
+          </span>
+
+        </div>
+
+
+        <h3
+          class="card-title"
           data-nl="aqualectra"
-          data-en="aqualectra"></h3>
+          data-en="aqualectra">
+        </h3>
 
-      <p class="card-desc"
-         data-nl="Aan het begin van de dag kwam er een medewerker van Aqualectra langs om iets te vertellen over het bedrijf. Tijdens de presentatie ging het vooral over de kantine en het werkplein. We mochten vragen stellen, en de vier kinderen met de beste vragen kregen de kans om het bedrijf te bezoeken.Ik wilde graag mee, dus ik stelde veel goede vragen. Uiteindelijk werd ik gekozen, samen met een paar andere kinderen.Toen we bij Aqualectra aankwamen, kregen we de kantine te zien. Persoonlijk vond ik die niet erg mooi. De kleuren vond ik een beetje te fel en ik vond de kleuren samen niet zo mooi het zag er ook oud uit. toen mochten we kiezen de kantine veranderen of het werkplein. Mijn groepje koos voor de kantine.Eerst maakten we een moodboard waarop we lieten zien hoe wij de kantine wilden inrichten. Daarna maakten we een schets van ons ontwerp. Dat kostte best veel tijd omdat onze schets de hele tijd wert afgekeurd. Uiteindelijk mochten we ook een maquette bouwen. Daar hadden we niet heel veel tijd voor, maar we deden allemaal ons best.In ons ontwerp wilden we een rustige en gezellige kantine maken, zonder druk of lelijk behang. ik deed mijn best werkte hard aan het project.jammmer genoeg hebben we niet hebben gewonnen en geen hoog cijfer gekregen, vond ik het een leerzame en leuke ervaring."
-         data-en="At the beginning of the day, an employee from Aqualectra came to give a presentation about the company. Most of the presentation was about the cafeteria and the workplace area. During the presentation, we were encouraged to ask questions, and the four children with the best questions would get the opportunity to visit the company. I really wanted to go, so I asked many good questions. In the end, I was selected along with a few other students. When we arrived at the company, I saw the cafeteria and immediately thought that it did not look very good. The colors were not attractive, and the overall design looked outdated. We were given a choice between redesigning the cafeteria or the workplace area, and my group chose the cafeteria. First, we created a board showing how we wanted the cafeteria to look. After that, we made a sketch of our design, which took quite a long time. Finally, we were allowed to build a model of our idea. We did not have much time for this part, but we worked hard and did our best. Our goal was to create a calm and comfortable cafeteria with a better appearance and without unattractive wallpaper. As always, I put a lot of effort into the project and worked hard with my team. Although we did not win and did not receive a very high grade, it was still a fun and educational experience."></p>
 
-      
-        <button class="card-toggle" type="button" aria-expanded="false">
-          <span class="toggle-text">Meer lezen</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <p
+          class="card-desc"
+          data-nl="Aan het begin van de dag kwam er een medewerker van Aqualectra langs om iets te vertellen over het bedrijf. Tijdens de presentatie ging het vooral over de kantine en het werkplein. We mochten vragen stellen, en de vier kinderen met de beste vragen kregen de kans om het bedrijf te bezoeken.Ik wilde graag mee, dus ik stelde veel goede vragen. Uiteindelijk werd ik gekozen, samen met een paar andere kinderen.Toen we bij Aqualectra aankwamen, kregen we de kantine te zien. Persoonlijk vond ik die niet erg mooi. De kleuren vond ik een beetje te fel en ik vond de kleuren samen niet zo mooi het zag er ook oud uit. toen mochten we kiezen de kantine veranderen of het werkplein. Mijn groepje koos voor de kantine.Eerst maakten we een moodboard waarop we lieten zien hoe wij de kantine wilden inrichten. Daarna maakten we een schets van ons ontwerp. Dat kostte best veel tijd omdat onze schets de hele tijd wert afgekeurd. Uiteindelijk mochten we ook een maquette bouwen. Daar hadden we niet heel veel tijd voor, maar we deden allemaal ons best.In ons ontwerp wilden we een rustige en gezellige kantine maken, zonder druk of lelijk behang. ik deed mijn best werkte hard aan het project.jammmer genoeg hebben we niet hebben gewonnen en geen hoog cijfer gekregen, vond ik het een leerzame en leuke ervaring."
+          data-en="At the beginning of the day, an employee from Aqualectra came to give a presentation about the company. Most of the presentation was about the cafeteria and the workplace area. During the presentation, we were encouraged to ask questions, and the four children with the best questions would get the opportunity to visit the company. I really wanted to go, so I asked many good questions. In the end, I was selected along with a few other students. When we arrived at the company, I saw the cafeteria and immediately thought that it did not look very good. The colors were not attractive, and the overall design looked outdated. We were given a choice between redesigning the cafeteria or the workplace area, and my group chose the cafeteria. First, we created a board showing how we wanted the cafeteria to look. After that, we made a sketch of our design, which took quite a long time. Finally, we were allowed to build a model of our idea. We did not have much time for this part, but we worked hard and did our best. Our goal was to create a calm and comfortable cafeteria with a better appearance and without unattractive wallpaper. As always, I put a lot of effort into the project and worked hard with my team. Although we did not win and did not receive a very high grade, it was still a fun and educational experience.">
+        </p>
+
+
+        <button
+          class="card-toggle"
+          type="button"
+          aria-expanded="false">
+
+          <span class="toggle-text">
+            Meer lezen
+          </span>
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true">
+
             <path d="m6 9 6 6 6-6"/>
+
           </svg>
+
         </button>
-<div class="card-footer">
-        <span class="card-date">2026</span>
-      </div>
-    </div>
-  </article>
 
-  <!-- KAART 005 -->
-  <article class="card">
-    <div class="card-photo">
-      <div class="card-photo-placeholder">
-        <span data-i18n="card.addphoto">Foto toevoegen</span>
-      </div>
-    </div>
 
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-tag" data-nl="Presentatie" data-en="Presentation"></span>
-        <span class="card-num">005</span>
+        <div class="card-footer">
+
+          <span class="card-date">
+            2026
+          </span>
+
+        </div>
+
       </div>
 
-      <h3 class="card-title"
+    </article>
+
+
+    <!-- KAART 005 -->
+    <article class="card">
+
+      <div class="card-photo">
+
+        <div class="card-photo-placeholder">
+
+          <span data-i18n="card.addphoto">
+            Foto toevoegen
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="card-body">
+
+        <div class="card-meta">
+
+          <span
+            class="card-tag"
+            data-nl="Presentatie"
+            data-en="Presentation">
+          </span>
+
+          <span class="card-num">
+            005
+          </span>
+
+        </div>
+
+
+        <h3
+          class="card-title"
           data-nl="samenwerking"
-          data-en="cooperation"></h3>
+          data-en="cooperation">
+        </h3>
 
-      <p class="card-desc"
-         data-nl="Het samenwerken ging bij bijna alle prjecten goed maar bij sommige had ik soms wat problemen. Niet alle projecten gingen even goed sommige gingen goed en somige keren had ik niet veel aan mijn teamgenoten. Elke keer bleef ik kalm en legte ik rustig (maar soms ook niet) uit wat ze moesten doen. Daarom hebben we elke keer wel ons best gedaan ik ben trots op alles wat ik heb gemaakt."
-         data-en="Collaborating on almost all projects went well, but I sometimes had some problems with a few. Not all projects went well; some went well, and other times my teammates weren't much help. Every time, I remained calm and quietly (though sometimes I didn't) explained what they needed to do. That is why we always did our best; I am proud of everything I have created."></p>
 
-      
-        <button class="card-toggle" type="button" aria-expanded="false">
-          <span class="toggle-text">Meer lezen</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <p
+          class="card-desc"
+          data-nl="Het samenwerken ging bij bijna alle prjecten goed maar bij sommige had ik soms wat problemen. Niet alle projecten gingen even goed sommige gingen goed en somige keren had ik niet veel aan mijn teamgenoten. Elke keer bleef ik kalm en legte ik rustig (maar soms ook niet) uit wat ze moesten doen. Daarom hebben we elke keer wel ons best gedaan ik ben trots op alles wat ik heb gemaakt."
+          data-en="Collaborating on almost all projects went well, but I sometimes had some problems with a few. Not all projects went well; some went well, and other times my teammates weren't much help. Every time, I remained calm and quietly (though sometimes I didn't) explained what they needed to do. That is why we always did our best; I am proud of everything I have created.">
+        </p>
+
+
+        <button
+          class="card-toggle"
+          type="button"
+          aria-expanded="false">
+
+          <span class="toggle-text">
+            Meer lezen
+          </span>
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true">
+
             <path d="m6 9 6 6 6-6"/>
-          </svg>
-        </button>
-<div class="card-footer">
-        <span class="card-date">2026</span>
-      </div>
-    </div>
-  </article>
 
-</div>
+          </svg>
+
+        </button>
+
+
+        <div class="card-footer">
+
+          <span class="card-date">
+            2026
+          </span>
+
+        </div>
+
+      </div>
+
+    </article>
+
 
   </div>
+
 </section>
 
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
+<!-- FOOTER -->
 <footer class="site-footer">
+
   <div class="footer-inner">
-    <p class="footer-text" data-i18n="footer.text">Portfolio Felice Visser · O&amp;O Brugklas</p>
-    <p class="footer-mark">Felice Visser</p>
+
+    <p
+      class="footer-text"
+      data-i18n="footer.text">
+      Portfolio Felice Visser · O&amp;O Brugklas
+    </p>
+
+    <p class="footer-mark">
+      Felice Visser
+    </p>
+
   </div>
+
 </footer>
 
 
-<!-- ============================================================
-     JAVASCRIPT — Taalwisseling & kaartenteller
-     ============================================================ -->
 <script>
 
   /* ============================================================
      VERTALINGEN
-     Voeg hier een nieuwe sleutel toe als je een nieuw UI-element
-     wilt vertalen.  Kaartinhoud doe je via data-nl / data-en
-     direct op het HTML-element — dat hoeft hier niet bij.
-     ============================================================ */
+  ============================================================ */
+
   const translations = {
+
     nl: {
-      'nav.projects':    'Projecten',
-      'nav.about':       'Over mij',
-      'hero.eyebrow':    'Portfolio · O&O · Brugklas',
-      'hero.greeting':   'Hoi, ik ben',
-      'hero.sub':        'Dit is mijn portfolio voor Onderzoek & Ontwerpen. Hier bewaar ik al mijn projecten, onderzoeken en ontwerpen uit de brugklas.',
-      'badge.oo':        'Onderzoek & Ontwerpen',
-      'badge.year':      'Schooljaar 2025–2026',
-      'badge.class':     'Brugklas',
-      'about.label':     'Over mij',
-      'about.text':      'Ik ben Felice en ik zit in de brugklas. Bij O&O leer ik onderzoek doen en dingen ontwerpen. Op deze pagina staan al mijn projecten.',
-      'projects.title':  'Projecten',
-      'card.addphoto':   'Foto toevoegen',
-      'card.more':       'Meer lezen',
-      'footer.text':     'Portfolio Felice Visser · O&O Brugklas',
-      'count.one':       '1 project',
-      'count.many':      '{n} projecten',
+
+      'nav.projects':'Projecten',
+      'nav.about':'Over mij',
+
+      'hero.eyebrow':'Portfolio · O&O · Brugklas',
+      'hero.greeting':'Hoi, ik ben',
+
+      'hero.sub':
+        'Dit is mijn portfolio voor Onderzoek & Ontwerpen. Hier bewaar ik al mijn projecten, onderzoeken en ontwerpen uit de brugklas.',
+
+      'badge.oo':'Onderzoek & Ontwerpen',
+      'badge.year':'Schooljaar 2025–2026',
+      'badge.class':'Brugklas',
+
+      'about.label':'Over mij',
+
+      'about.text':
+        'Ik ben Felice en ik zit in de brugklas. Bij O&O leer ik onderzoek doen en dingen ontwerpen. Op deze pagina staan al mijn projecten.',
+
+      'projects.title':'Projecten',
+
+      'card.addphoto':'Foto toevoegen',
+
+      'card.more':'Meer lezen',
+
+      'footer.text':
+        'Portfolio Felice Visser · O&O Brugklas',
+
+      'count.one':'1 project',
+      'count.many':'{n} projecten'
+
     },
+
+
     en: {
-      'nav.projects':    'Projects',
-      'nav.about':       'About me',
-      'hero.eyebrow':    'Portfolio · R&D · First Year',
-      'hero.greeting':   'Hi, I\'m',
-      'hero.sub':        'This is my portfolio for Research & Design. Here I collect all my projects, research and designs from my first year of secondary school.',
-      'badge.oo':        'Research & Design',
-      'badge.year':      'School Year 2025–2026',
-      'badge.class':     'First Year',
-      'about.label':     'About me',
-      'about.text':      'I\'m Felice and I\'m in my first year of secondary school. In R&D I learn how to do research and design things. All my projects are on this page.',
-      'projects.title':  'Projects',
-      'card.addphoto':   'Add photo',
-      'card.more':       'Read more',
-      'footer.text':     'Portfolio Felice Visser · R&D First Year',
-      'count.one':       '1 project',
-      'count.many':      '{n} projects',
+
+      'nav.projects':'Projects',
+      'nav.about':'About me',
+
+      'hero.eyebrow':'Portfolio · R&D · First Year',
+      'hero.greeting':"Hi, I'm",
+
+      'hero.sub':
+        'This is my portfolio for Research & Design. Here I collect all my projects, research and designs from my first year of secondary school.',
+
+      'badge.oo':'Research & Design',
+      'badge.year':'School Year 2025–2026',
+      'badge.class':'First Year',
+
+      'about.label':'About me',
+
+      'about.text':
+        "I'm Felice and I'm in my first year of secondary school. In R&D I learn how to do research and design things. All my projects are on this page.",
+
+      'projects.title':'Projects',
+
+      'card.addphoto':'Add photo',
+
+      'card.more':'Read more',
+
+      'footer.text':
+        'Portfolio Felice Visser · R&D First Year',
+
+      'count.one':'1 project',
+      'count.many':'{n} projects'
+
     }
+
   };
 
 
   /* ============================================================
      TAAL INSTELLEN
-     Wordt aangeroepen door de NL / EN knoppen in de header,
-     en bij het laden van de pagina (default: NL).
-     ============================================================ */
+  ============================================================ */
+
   function setLang(lang) {
+
     const t = translations[lang];
+
     if (!t) return;
 
-    // Fade-out
     document.body.classList.add('lang-fade');
 
-    setTimeout(function () {
 
-      // Stel lang-attribuut in op <html>
-      document.documentElement.setAttribute('lang',      lang);
-      document.documentElement.setAttribute('data-lang', lang);
+    setTimeout(function() {
 
-      // Verwerk data-i18n elementen (UI-tekst)
-      document.querySelectorAll('[data-i18n]').forEach(function (el) {
-        var key = el.getAttribute('data-i18n');
-        if (t[key] !== undefined) el.textContent = t[key];
+      document.documentElement.setAttribute(
+        'lang',
+        lang
+      );
+
+      document.documentElement.setAttribute(
+        'data-lang',
+        lang
+      );
+
+
+      /* UI vertalingen */
+
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+
+        const key = el.getAttribute('data-i18n');
+
+        if (t[key] !== undefined) {
+          el.textContent = t[key];
+        }
+
       });
 
-      // Verwerk data-nl / data-en elementen (kaartinhoud)
-      document.querySelectorAll('[data-nl], [data-en]').forEach(function (el) {
-        var val = el.getAttribute('data-' + lang);
-        if (val !== null) el.textContent = val;
-      });
 
-      // Paginatitel aanpassen
-      document.title = lang === 'nl'
-        ? 'Portfolio Felice Visser — O&O'
-        : 'Portfolio Felice Visser — R&D';
+      /* Kaartteksten */
 
-      // Actieve knop bijwerken
-      document.querySelectorAll('.lang-btn').forEach(function (btn) {
-        btn.classList.toggle('active', btn.id === 'btn-' + lang);
-      });
+      document
+        .querySelectorAll('[data-nl], [data-en]')
+        .forEach(function(el) {
 
-      // Kaartenteller bijwerken
+          const value =
+            el.getAttribute('data-' + lang);
+
+          if (value !== null) {
+            el.textContent = value;
+          }
+
+        });
+
+
+      /* Pagina titel */
+
+      document.title =
+        lang === 'nl'
+          ? 'Portfolio Felice Visser — O&O'
+          : 'Portfolio Felice Visser — R&D';
+
+
+      /* Actieve taal */
+
+      document.querySelectorAll('.lang-btn')
+        .forEach(function(btn) {
+
+          btn.classList.toggle(
+            'active',
+            btn.id === 'btn-' + lang
+          );
+
+        });
+
+
+      /* Teller */
+
       updateCount(lang, t);
 
-      // Fade-in
-      updateToggleLabels(lang);
-       document.body.classList.remove('lang-fade');
 
-    }, 130);
+      /* Meer lezen labels */
+
+      updateToggleLabels(lang);
+
+
+      /* Alles-knop */
+
+      const allBtn =
+        document.getElementById('toggle-all');
+
+      if (allBtn) {
+
+        const cards =
+          Array.from(
+            document.querySelectorAll('.card')
+          );
+
+        const allExpanded =
+          cards.length > 0 &&
+          cards.every(function(card) {
+            return card.classList.contains('expanded');
+          });
+
+
+        allBtn.textContent =
+          allExpanded
+            ? (
+                lang === 'nl'
+                  ? 'Alles inklappen'
+                  : 'Collapse all'
+              )
+            : (
+                lang === 'nl'
+                  ? 'Alles uitklappen'
+                  : 'Expand all'
+              );
+
+      }
+
+
+      document.body.classList.remove(
+        'lang-fade'
+      );
+
+
+    },130);
+
   }
 
 
   /* ============================================================
      KAARTENTELLER
-     Telt automatisch het aantal .card elementen en toont dit
-     naast de sectietitel. Geen actie nodig bij nieuwe kaarten.
-     ============================================================ */
-  function updateCount(lang, t) {
-    var n       = document.querySelectorAll('.cards-grid .card').length;
-    var countEl = document.getElementById('card-count');
+  ============================================================ */
+
+  function updateCount(lang,t) {
+
+    const n =
+      document.querySelectorAll(
+        '.cards-grid .card'
+      ).length;
+
+    const countEl =
+      document.getElementById(
+        'card-count'
+      );
+
     if (!countEl || !t) return;
-    countEl.textContent = (n === 1)
-      ? t['count.one']
-      : t['count.many'].replace('{n}', n);
+
+
+    countEl.textContent =
+      n === 1
+        ? t['count.one']
+        : t['count.many'].replace(
+            '{n}',
+            n
+          );
+
   }
 
 
   /* ============================================================
-     UITKLAPBARE PROJECTKAARTEN
-     Klik op "Meer lezen" om de volledige beschrijving te tonen.
-     ============================================================ */
+     MEER LEZEN / MINDER LEZEN
+     
+     BELANGRIJK:
+     Deze functie wordt bij DOMContentLoaded
+     aangeroepen. Daardoor werken de knoppen
+     daadwerkelijk.
+  ============================================================ */
+
   function initCardToggles() {
-    document.querySelectorAll('.card').forEach(function(card) {
-      const button = card.querySelector('.card-toggle');
-      const text = button ? button.querySelector('.toggle-text') : null;
-      if (!button || !text) return;
 
-      button.addEventListener('click', function() {
-        const expanded = card.classList.toggle('expanded');
-        button.setAttribute('aria-expanded', String(expanded));
+    document
+      .querySelectorAll('.card')
+      .forEach(function(card) {
 
-        const lang = document.documentElement.getAttribute('data-lang') || 'nl';
-        text.textContent = expanded
-          ? (lang === 'nl' ? 'Minder lezen' : 'Read less')
-          : (lang === 'nl' ? 'Meer lezen' : 'Read more');
+        const button =
+          card.querySelector(
+            '.card-toggle'
+          );
+
+        const text =
+          button
+            ? button.querySelector(
+                '.toggle-text'
+              )
+            : null;
+
+
+        if (!button || !text) {
+          return;
+        }
+
+
+        button.addEventListener(
+          'click',
+          function() {
+
+            const expanded =
+              card.classList.toggle(
+                'expanded'
+              );
+
+
+            button.setAttribute(
+              'aria-expanded',
+              String(expanded)
+            );
+
+
+            const lang =
+              document.documentElement
+                .getAttribute('data-lang')
+              || 'nl';
+
+
+            text.textContent =
+              expanded
+
+                ? (
+                    lang === 'nl'
+                      ? 'Minder lezen'
+                      : 'Read less'
+                  )
+
+                : (
+                    lang === 'nl'
+                      ? 'Meer lezen'
+                      : 'Read more'
+                  );
+
+          }
+        );
+
       });
-    });
+
   }
 
-  /* Houd de knoptekst correct bij een taalwissel. */
+
+  /* ============================================================
+     LABELS BIJ TAALWISSEL
+  ============================================================ */
+
   function updateToggleLabels(lang) {
-    document.querySelectorAll('.card').forEach(function(card) {
-      const button = card.querySelector('.card-toggle');
-      const text = button ? button.querySelector('.toggle-text') : null;
-      if (!button || !text) return;
-      text.textContent = card.classList.contains('expanded')
-        ? (lang === 'nl' ? 'Minder lezen' : 'Read less')
-        : (lang === 'nl' ? 'Meer lezen' : 'Read more');
-    });
+
+    document
+      .querySelectorAll('.card')
+      .forEach(function(card) {
+
+        const button =
+          card.querySelector(
+            '.card-toggle'
+          );
+
+        const text =
+          button
+            ? button.querySelector(
+                '.toggle-text'
+              )
+            : null;
+
+
+        if (!button || !text) {
+          return;
+        }
+
+
+        text.textContent =
+          card.classList.contains(
+            'expanded'
+          )
+
+            ? (
+                lang === 'nl'
+                  ? 'Minder lezen'
+                  : 'Read less'
+              )
+
+            : (
+                lang === 'nl'
+                  ? 'Meer lezen'
+                  : 'Read more'
+              );
+
+      });
+
   }
 
-  /* Terug-naar-boven knop */
+
+  /* ============================================================
+     BACK TO TOP + ALLES UITKLAPPEN
+  ============================================================ */
+
   function initBackTop() {
-    const btn = document.createElement('button');
-    btn.className = 'back-top';
-    btn.type = 'button';
-    btn.setAttribute('aria-label', 'Terug naar boven');
-    btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 15 6-6 6 6"/></svg>';
+
+    const btn =
+      document.createElement(
+        'button'
+      );
+
+
+    btn.className =
+      'back-top';
+
+    btn.type =
+      'button';
+
+    btn.setAttribute(
+      'aria-label',
+      'Terug naar boven'
+    );
+
+
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 15 6-6 6 6"/></svg>';
+
+
     document.body.appendChild(btn);
 
-    const allBtn = document.getElementById('toggle-all');
+
+    /* ALLES UITKLAPPEN */
+
+    const allBtn =
+      document.getElementById(
+        'toggle-all'
+      );
+
+
     if (allBtn) {
-      allBtn.addEventListener('click', function() {
-        const cards = Array.from(document.querySelectorAll('.card'));
-        const shouldExpand = cards.some(card => !card.classList.contains('expanded'));
-        cards.forEach(function(card) {
-          const b = card.querySelector('.card-toggle');
-          const t = b ? b.querySelector('.toggle-text') : null;
-          card.classList.toggle('expanded', shouldExpand);
-          if (b) b.setAttribute('aria-expanded', String(shouldExpand));
-          if (t) t.textContent = shouldExpand ? 'Minder lezen' : 'Meer lezen';
-        });
-        allBtn.textContent = shouldExpand ? 'Alles inklappen' : 'Alles uitklappen';
-      });
+
+      allBtn.addEventListener(
+        'click',
+        function() {
+
+          const cards =
+            Array.from(
+              document.querySelectorAll(
+                '.card'
+              )
+            );
+
+
+          const shouldExpand =
+            cards.some(function(card) {
+
+              return !card.classList.contains(
+                'expanded'
+              );
+
+            });
+
+
+          const lang =
+            document.documentElement
+              .getAttribute('data-lang')
+            || 'nl';
+
+
+          cards.forEach(
+            function(card) {
+
+              const button =
+                card.querySelector(
+                  '.card-toggle'
+                );
+
+              const text =
+                button
+                  ? button.querySelector(
+                      '.toggle-text'
+                    )
+                  : null;
+
+
+              card.classList.toggle(
+                'expanded',
+                shouldExpand
+              );
+
+
+              if (button) {
+
+                button.setAttribute(
+                  'aria-expanded',
+                  String(shouldExpand)
+                );
+
+              }
+
+
+              if (text) {
+
+                text.textContent =
+                  shouldExpand
+
+                    ? (
+                        lang === 'nl'
+                          ? 'Minder lezen'
+                          : 'Read less'
+                      )
+
+                    : (
+                        lang === 'nl'
+                          ? 'Meer lezen'
+                          : 'Read more'
+                      );
+
+              }
+
+            }
+          );
+
+
+          allBtn.textContent =
+            shouldExpand
+
+              ? (
+                  lang === 'nl'
+                    ? 'Alles inklappen'
+                    : 'Collapse all'
+                )
+
+              : (
+                  lang === 'nl'
+                    ? 'Alles uitklappen'
+                    : 'Expand all'
+                );
+
+        }
+      );
+
     }
 
-    window.addEventListener('scroll', function() {
-      btn.classList.toggle('show', window.scrollY > 500);
-    }, {passive:true});
 
-    btn.addEventListener('click', function() {
-      window.scrollTo({top:0, behavior:'smooth'});
-    });
+    /* BACK TO TOP */
+
+    window.addEventListener(
+      'scroll',
+      function() {
+
+        btn.classList.toggle(
+          'show',
+          window.scrollY > 500
+        );
+
+      },
+      {passive:true}
+    );
+
+
+    btn.addEventListener(
+      'click',
+      function() {
+
+        window.scrollTo({
+          top:0,
+          behavior:'smooth'
+        });
+
+      }
+    );
+
   }
 
 
   /* ============================================================
-     INITIALISATIE — start altijd in het Nederlands
-     ============================================================ */
-  document.addEventListener('DOMContentLoaded', function () {
-    setLang('nl');
-  });
+     INITIALISATIE
+     
+     HIER ZAT DE BUG.
+     
+     Eerst werd alleen setLang() uitgevoerd.
+     Nu worden ook:
+     
+     initCardToggles()
+     initBackTop()
+     
+     uitgevoerd.
+  ============================================================ */
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    function() {
+
+      setLang('nl');
+
+      initCardToggles();
+
+      initBackTop();
+
+    }
+  );
 
 </script>
 
